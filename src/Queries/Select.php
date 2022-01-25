@@ -21,7 +21,7 @@ class Select extends Common implements \Countable
      * @param Query $fluent
      * @param           $from
      */
-    public function __construct(Query $fluent, $from)
+    public function __construct(Query $fluent, $from, $includeTableAliasColumns = true)
     {
         $clauses = [
             'SELECT' => ', ',
@@ -43,7 +43,9 @@ class Select extends Common implements \Countable
         $this->fromAlias = end( $fromParts );
         
         $this->statements[ 'FROM' ] = $from;
-        $this->statements[ 'SELECT' ][] = $this->fromAlias.'.*';
+        if ($includeTableAliasColumns === true) {
+            $this->statements['SELECT'][] = $this->fromAlias . '.*';
+        }
         $this->joins[] = $this->fromAlias;
     }
     

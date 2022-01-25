@@ -50,12 +50,18 @@ class Query
     protected $separator;
     
     /**
+     * @var bool|mixed
+     */
+    private $includeTableAliasColumns;
+    
+    /**
      * Query constructor
      *
      * @param PDO $pdo
      * @param ?Structure $structure
+     * @param bool $includeTableAliasColumns
      */
-    public function __construct(PDO $pdo, ?Structure $structure = null)
+    public function __construct(PDO $pdo, ?Structure $structure = null, $includeTableAliasColumns = true)
     {
         $this->pdo = $pdo;
         
@@ -63,7 +69,8 @@ class Query
         if ($this->pdo->getAttribute( PDO::ATTR_ERRMODE ) === PDO::ERRMODE_EXCEPTION) {
             $this->throwExceptionOnError( true );
         }
-        
+    
+        $this->includeTableAliasColumns = $includeTableAliasColumns;
         $this->structure = ($structure instanceof Structure) ? $structure : new Structure();
     }
     
@@ -82,7 +89,7 @@ class Query
         $this->setTableName( $table );
         $table = $this->getFullTableName();
         
-        $query = new Select( $this, $table );
+        $query = new Select( $this, $table, $this->includeTableAliasColumns );
         
         if ($primaryKey !== null) {
             $tableTable = $query->getFromTable();
