@@ -2,7 +2,7 @@
 
 namespace AJUR\FluentPDO\Queries;
 
-use DateTime, IteratorAggregate, PDO, PDOStatement;
+use DateTime, IteratorAggregate, \PDO, \PDOStatement;
 use AJUR\FluentPDO\{Exception, Literal, Query, Regex, Structure, Utilities};
 
 /**
@@ -11,37 +11,59 @@ use AJUR\FluentPDO\{Exception, Literal, Query, Regex, Structure, Utilities};
 abstract class Base implements IteratorAggregate
 {
     
-    /** @var float */
+    /**
+     * @var float
+     */
     private $totalTime;
     
-    /** @var float */
+    /**
+     * @var float
+     */
     private $executionTime;
     
-    /** @var bool */
+    /**
+     * @var bool
+     */
     private $object = false;
     
-    /** @var Query */
+    /**
+     * @var Query
+     */
     protected $fluent;
     
-    /** @var PDOStatement|null|bool */
+    /**
+     * @var PDOStatement|null|bool
+     */
     protected $result;
     
-    /** @var array - definition clauses */
+    /**
+     * @var array - definition clauses
+     */
     protected $clauses = [];
     
-    /** @var array */
+    /**
+     * @var array
+     */
     protected $statements = [];
     
-    /** @var array */
+    /**
+     * @var array
+     */
     protected $parameters = [];
     
-    /** @var Regex */
+    /**
+     * @var Regex
+     */
     protected $regex;
     
-    /** @var string */
+    /**
+     * @var string
+     */
     protected $message = '';
     
-    /** @var int */
+    /**
+     * @var int
+     */
     protected $currentFetchMode;
     
     /**
@@ -170,7 +192,7 @@ abstract class Base implements IteratorAggregate
     /**
      * Implements method from IteratorAggregate
      *
-     * @return PDOStatement
+     * @return \PDOStatement
      *
      * @throws Exception
      */
@@ -182,7 +204,7 @@ abstract class Base implements IteratorAggregate
     /**
      * Execute query with earlier added parameters
      *
-     * @return PDOStatement
+     * @return \PDOStatement
      *
      * @throws Exception
      */
@@ -218,7 +240,7 @@ abstract class Base implements IteratorAggregate
     /**
      * Get PDOStatement result
      *
-     * @return PDOStatement|null|bool
+     * @return \PDOStatement|null|bool
      */
     public function getResult()
     {
@@ -525,18 +547,18 @@ abstract class Base implements IteratorAggregate
     /**
      * @param PDOStatement $result
      */
-    private function setObjectFetchMode(PDOStatement $result): void
+    private function setObjectFetchMode($result): void
     {
         if ($this->object !== false) {
             if (class_exists( $this->object )) {
-                $this->currentFetchMode = PDO::FETCH_CLASS;
+                $this->currentFetchMode = \PDO::FETCH_CLASS;
                 $result->setFetchMode( $this->currentFetchMode, $this->object );
             } else {
-                $this->currentFetchMode = PDO::FETCH_OBJ;
+                $this->currentFetchMode = \PDO::FETCH_OBJ;
                 $result->setFetchMode( $this->currentFetchMode );
             }
-        } elseif ($this->fluent->getPdo()->getAttribute( PDO::ATTR_DEFAULT_FETCH_MODE ) === PDO::FETCH_BOTH) {
-            $this->currentFetchMode = PDO::FETCH_ASSOC;
+        } elseif ($this->fluent->getPdo()->getAttribute( \PDO::ATTR_DEFAULT_FETCH_MODE ) === \PDO::FETCH_BOTH) {
+            $this->currentFetchMode = \PDO::FETCH_ASSOC;
             $result->setFetchMode( $this->currentFetchMode );
         }
     }

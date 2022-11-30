@@ -7,8 +7,9 @@ namespace AJUR\FluentPDO;
  */
 class Literal
 {
-    
-    /** @var string */
+    /**
+     * @var string
+     */
     protected $value = '';
     
     /**

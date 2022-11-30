@@ -2,7 +2,7 @@
 
 namespace AJUR\FluentPDO;
 
-use PDO;
+use \PDO;
 use AJUR\FluentPDO\Queries\{Insert, Select, Update, Delete};
 
 /**
@@ -22,31 +22,49 @@ use AJUR\FluentPDO\Queries\{Insert, Select, Update, Delete};
  */
 class Query
 {
-    /** @var PDO */
+    /**
+     * @var
+     */
     protected $pdo;
     
-    /** @var Structure */
+    /**
+     * @var * Structure
+     */
     protected $structure;
     
-    /** @var bool|callable */
+    /**
+     * @var bool|callable
+     */
     public $debug = false;
     
-    /** @var bool - Determines whether to convert types when fetching rows from Select */
+    /**
+     * @var bool - Determines whether to convert types when fetching rows from Select
+     */
     public $convertRead = false;
     
-    /** @var bool - Determines whether to convert types within Base::buildParameters() */
+    /**
+     * @var bool - Determines whether to convert types within Base::buildParameters()
+     */
     public $convertWrite = false;
     
-    /** @var bool - If a query errors, this determines how to handle it */
+    /**
+     * @var bool - If a query errors, this determines how to handle it
+     */
     public $exceptionOnError = false;
     
-    /** @var string */
+    /**
+     * @var string
+     */
     protected $table;
     
-    /** @var string */
+    /**
+     * @var string
+     */
     protected $prefix;
     
-    /** @var string */
+    /**
+     * @var string
+     */
     protected $separator;
     
     /**
@@ -57,16 +75,16 @@ class Query
     /**
      * Query constructor
      *
-     * @param PDO $pdo
+     * @param $pdo
      * @param ?Structure $structure
      * @param bool $includeTableAliasColumns
      */
-    public function __construct(PDO $pdo, ?Structure $structure = null, $includeTableAliasColumns = true)
+    public function __construct($pdo, ?Structure $structure = null, $includeTableAliasColumns = true)
     {
         $this->pdo = $pdo;
         
         // if exceptions are already activated in PDO, activate them in Fluent as well
-        if ($this->pdo->getAttribute( PDO::ATTR_ERRMODE ) === PDO::ERRMODE_EXCEPTION) {
+        if ($this->pdo->getAttribute( \PDO::ATTR_ERRMODE ) === \PDO::ERRMODE_EXCEPTION) {
             $this->throwExceptionOnError( true );
         }
     
@@ -187,9 +205,9 @@ class Query
     }
     
     /**
-     * @return PDO
+     * @return
      */
-    public function getPdo(): PDO
+    public function getPdo()
     {
         return $this->pdo;
     }

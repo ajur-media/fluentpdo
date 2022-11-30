@@ -26,7 +26,9 @@ use AJUR\FluentPDO\{Exception, Literal, Utilities};
 abstract class Common extends Base
 {
     
-    /** @var array - methods which are allowed to be called by the magic method __call() */
+    /**
+     * @var array - methods which are allowed to be called by the magic method __call()
+     */
     private $validMethods = [
         'comment',
         'from',
@@ -45,10 +47,14 @@ abstract class Common extends Base
         'rightJoin',
     ];
     
-    /** @var array - Query tables (also include table from clause FROM) */
+    /**
+     * @var array - Query tables (also include table from clause FROM)
+     */
     protected $joins = [];
     
-    /** @var bool - Disable adding undefined joins to query? */
+    /**
+     * @var bool - Disable adding undefined joins to query?
+     */
     protected $isSmartJoinEnabled = true;
     
     /**

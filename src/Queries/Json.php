@@ -12,13 +12,19 @@ use AJUR\FluentPDO\{Query, Utilities};
 class Json extends Common
 {
     
-    /** @var mixed */
+    /**
+     * @var mixed
+     */
     protected $fromTable;
     
-    /** @var mixed */
+    /**
+     * @var mixed
+     */
     protected $fromAlias;
     
-    /** @var boolean */
+    /**
+     * @var boolean
+     */
     protected $convertTypes = false;
     
     /**

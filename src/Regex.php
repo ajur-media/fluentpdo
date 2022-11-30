@@ -7,11 +7,19 @@ namespace AJUR\FluentPDO;
  */
 class Regex
 {
-    /** @var string - All UTF-8 letter characters */
+    /**
+     * @var string - All UTF-8 letter characters
+     */
     public const ALPHA = '\p{L}';
-    /** @var string - All UTF-8 letter and number characters */
+
+    /**
+     * @var string - All UTF-8 letter and number characters
+     */
     public const ALNUM = '\p{L}\p{N}';
-    /** @var string - All valid SQL characters except the UTF-8 groupings with quotes and wildcards */
+
+    /**
+     * @var string - All valid SQL characters except the UTF-8 groupings with quotes and wildcards
+     */
     public const SQLCHARS = '\p{L}\p{N}\p{Pc}\p{Pd}\p{Pf}\p{Pi}';
     
     /**

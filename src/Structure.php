@@ -8,9 +8,14 @@ namespace AJUR\FluentPDO;
 class Structure
 {
     
-    /** @var string */
+    /**
+     * @var string
+     */
     private $primaryKey;
-    /** @var string */
+
+    /**
+     * @var string
+     */
     private $foreignKey;
     
     /**

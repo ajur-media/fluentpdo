@@ -9,16 +9,24 @@ use AJUR\FluentPDO\{Exception, Literal, Query};
 class Insert extends Base
 {
     
-    /** @var array */
+    /**
+     * @var array
+     */
     private $columns = [];
     
-    /** @var array */
+    /**
+     * @var array
+     */
     private $firstValue = [];
     
-    /** @var bool */
+    /**
+     * @var bool
+     */
     private $ignore = false;
     
-    /** @var bool */
+    /**
+     * @var bool
+     */
     private $delayed = false;
     
     /**

@@ -10,16 +10,22 @@ use AJUR\FluentPDO\{Exception, Query, Utilities};
 class Select extends Common implements \Countable
 {
     
-    /** @var mixed */
+    /**
+     * @var mixed
+     */
     private $fromTable;
-    /** @var mixed */
+
+    /**
+     * @var mixed
+     */
     private $fromAlias;
-    
+
     /**
      * SelectQuery constructor.
      *
      * @param Query $fluent
      * @param           $from
+     * @param bool $includeTableAliasColumns
      */
     public function __construct(Query $fluent, $from, $includeTableAliasColumns = true)
     {
