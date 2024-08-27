@@ -216,7 +216,7 @@ class Insert extends Base
      *
      * @return array
      */
-    protected function filterLiterals($statements)
+    protected function filterLiterals($statements): array
     {
         $f = static function($item) {
             return !$item instanceof Literal;

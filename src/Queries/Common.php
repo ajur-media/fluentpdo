@@ -365,7 +365,7 @@ abstract class Common extends Base
         
         // don't rewrite table from other databases
         foreach ($this->joins as $join) {
-            if (strpos( $join, '.' ) !== false && strpos( $statement, $join ) === 0) {
+            if (strpos( $join, '.' ) !== false && strpos( $statement, (string) $join ) === 0) {
                 // rebuild the where statement
                 if ($separator !== null) {
                     $statement = [ $separator, $statement ];
@@ -447,7 +447,7 @@ abstract class Common extends Base
      */
     private function matchTableWithJoin($table, $joinItem)
     {
-        return strpos( $joinItem, $table ) === 0;
+        return strpos( $joinItem, (string) $table ) === 0;
     }
     
     /**

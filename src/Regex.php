@@ -29,7 +29,7 @@ class Regex
      *
      * @return null|string|string[]
      */
-    public function camelCaseSpaced(string $subject)
+    public function camelCaseSpaced(string $subject): ?string
     {
         return preg_replace( '/(.)([A-Z]+)/', '$1 $2', $subject );
     }
@@ -44,7 +44,7 @@ class Regex
      *
      * @return null|string|string[]
      */
-    public function splitClauses(string $subject)
+    public function splitClauses(string $subject): ?string
     {
         return preg_replace(
             '/\b(WHERE|FROM|GROUP BY|HAVING|ORDER BY|LIMIT|OFFSET|UNION|ON DUPLICATE KEY UPDATE|VALUES|SET)\b/',
@@ -62,7 +62,7 @@ class Regex
      *
      * @return null|string|string[]
      */
-    public function splitSubClauses(string $subject)
+    public function splitSubClauses(string $subject): ?string
     {
         return preg_replace(
             '/\b(INNER|OUTER|LEFT|RIGHT|FULL|CASE|WHEN|END|ELSE|AND|OR)\b/',
@@ -78,7 +78,7 @@ class Regex
      *
      * @return null|string|string[]
      */
-    public function removeLineEndWhitespace(string $subject)
+    public function removeLineEndWhitespace(string $subject): ?string
     {
         return preg_replace( "/\s+\n/", "\n", $subject );
     }
@@ -90,7 +90,7 @@ class Regex
      *
      * @return null|string|string[]
      */
-    public function removeAdditionalJoins(string $subject)
+    public function removeAdditionalJoins(string $subject): ?string
     {
         return preg_replace( '/(?:[^\s]*[.:])?([^\s]+)[.:]([^\s]*)/u', '$1.$2', $subject );
     }

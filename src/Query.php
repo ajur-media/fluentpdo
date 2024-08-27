@@ -334,7 +334,7 @@ class Query
     
     public function __get($field)
     {
-        return isset( $this->{(string)($field)} ) ? $this->{(string)($field)} : null;
+        return $this->{(string)($field)} ?? null;
     }
     
 }

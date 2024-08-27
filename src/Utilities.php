@@ -14,7 +14,7 @@ class Utilities
      *
      * @return string
      */
-    public static function toUpperWords($string)
+    public static function toUpperWords($string): string
     {
         $regex = new Regex();
         return strtoupper( trim( $regex->camelCaseSpaced( $string ) ) );
@@ -123,9 +123,9 @@ class Utilities
      *
      * @return bool
      */
-    public static function isCountable($subject)
+    public static function isCountable($subject): bool
     {
-        return (is_array( $subject ) || ($subject instanceof \Countable));
+        return (is_countable($subject));
     }
     
     /**
