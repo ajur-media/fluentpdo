@@ -127,8 +127,12 @@ class Select extends Common implements \Countable
         if ($this->result === false) {
             return false;
         }
-        
-        $row = $this->result->fetch( $this->currentFetchMode, $cursorOrientation );
+
+        if (is_null($this->currentFetchMode)) {
+            $row = $this->result->fetch( \PDO::FETCH_ASSOC, $cursorOrientation );
+        } else {
+            $row = $this->result->fetch( $this->currentFetchMode, $cursorOrientation );
+        }
         
         if ($this->fluent->convertRead === true) {
             $row = Utilities::stringToNumeric( $this->result, $row );
@@ -183,7 +187,7 @@ class Select extends Common implements \Countable
         }
         
         if ($selectOnly) {
-            $this->select( $index.', '.$selectOnly, true );
+            $this->select( $index . ', ' . $selectOnly, true );
         }
         
         if ($index) {
@@ -208,7 +212,8 @@ class Select extends Common implements \Countable
      * @throws Exception
      *
      */
-    public function count()
+    #[\ReturnTypeWillChange]
+    public function count(): int
     {
         $fluent = clone $this;
         
@@ -220,6 +225,7 @@ class Select extends Common implements \Countable
      * @throws Exception
      *
      */
+    #[\ReturnTypeWillChange]
     public function getIterator()
     {
         if ($this->fluent->convertRead === true) {
@@ -235,7 +241,7 @@ class Select extends Common implements \Countable
      *
      * @return array
      */
-    private function buildSelectData($index, $indexAsArray)
+    private function buildSelectData($index, $indexAsArray): array
     {
         $data = [];
         

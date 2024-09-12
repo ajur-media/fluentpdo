@@ -196,6 +196,7 @@ abstract class Base implements IteratorAggregate
      *
      * @throws Exception
      */
+    #[\ReturnTypeWillChange]
     public function getIterator()
     {
         return $this->execute();
@@ -204,7 +205,7 @@ abstract class Base implements IteratorAggregate
     /**
      * Execute query with earlier added parameters
      *
-     * @return \PDOStatement
+     * @return \PDOStatement|null
      *
      * @throws Exception
      */
